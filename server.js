@@ -13,45 +13,47 @@ const middleware = (req, res, next) => {
 
 const handleHome = (req, res) => {
   console.log("hi nodeJS");
-  res.render("home", {userDb : userDb});
+  res.render("home", { userDb: userDb });
 };
 
-const handleCreate =(req, res) => {
+const handleCreate = (req, res) => {
   console.log("/create");
   res.render("create");
   res.end();
-}
-const handleDetail =(req, res) => {
+};
+
+const handleDetail = (req, res) => {
   console.log("/detail");
   res.render("detail");
   res.end();
-}
-const handleList =(req, res) => {
+};
+
+const handleList = (req, res) => {
   console.log("/list");
   res.render("list");
   res.end();
-}
-const handleUpdate =(req, res) => {
+};
+const handleUpdate = (req, res) => {
   console.log("/update");
   res.render("update");
   res.end();
-}
-const handleLogin =(req, res) => {
+};
+const handleLogin = (req, res) => {
   console.log("/login");
   res.render("login");
   res.end();
-}
-const handleLogout =(req, res) => {
+};
+const handleLogout = (req, res) => {
   console.log("/logout");
   res.render("logout");
   res.end();
-}
+};
 
 let userDb = {
-  id : "apffjfjd",
-  name : "kdKim",
-  content : "hello2 hello2",
-  loggedIn : false
+  id: "apffjfjd",
+  name: "kdKim",
+  content: "hello2 hello2",
+  loggedIn: false,
 };
 app.get("/", handleHome);
 app.get("/create", middleware, handleCreate);
