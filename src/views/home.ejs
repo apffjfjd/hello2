@@ -8,10 +8,12 @@
 </head>
 <body>
     <h1>Home</h1>
-    <%if(userDb.loggedIn) {%>
+    <%if(videos.loggedIn) {%>
         <a href="logout">로그아웃</a>
         <%} else { %>
             <a href="login">로그인</a>
+            <p>아직 회원이 아니신가요?</p><br/>
+            <p>지금 바로 <a href="signup">회원가입</a>하세요</p>
         <%}%>
     
 </body>
