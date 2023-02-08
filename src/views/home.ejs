@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 <body>
-    <h1>Home</h1>
-    <%if(videos.loggedIn) {%>
-        <a href="logout">로그아웃</a>
-        <%} else { %>
-            <a href="login">로그인</a>
-            <p>아직 회원이 아니신가요?</p><br/>
-            <p>지금 바로 <a href="signup">회원가입</a>하세요</p>
-        <%}%>
-    
+  <nav>
+    <li><a href="upload">글작성</a></li>
+  </nav>
+  <%if(videos.loggedIn) {%>
+  <a href="logout">로그아웃</a>
+  <%} else { %>
+  <a href="login">로그인</a>
+  <p>아직 회원이 아니신가요?</p>
+  <p>지금 바로 <a href="signup">회원가입</a>하세요</p>
+  <%}%>
 </body>
-</html>
