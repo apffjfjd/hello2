@@ -15,11 +15,10 @@ app.set("layout", "layout");
 
 app.use(logger);
 app.use(ejsLayouts);
-// app.use(express.urlencoded({ extended: true}));
-// 위 코드는 무슨 의미인지?
+app.use(express.urlencoded({ extended: true }));
+// 위 코드는 무슨 의미인지? --> req.body(view단에서 받은 값을 서버에서 사용하고자할 때 사용)
 app.use("/", globalRouter);
-
-app.use("/", videoRouter);
+app.use("/videos", videoRouter);
 // app.use("/users", userRouter);
 
 export default app;

@@ -1,19 +1,38 @@
 import Video from "../models/Video";
 
-export const home = async (req, res) => {
-  const videos = await Video.find({});
-  return res.render("home", { pageTitle: "Home", 
-  loggedIn: false });
+export const home = (req, res) => {
+  return res.render("home", { pageTitle: "Home", loggedIn: false });
 };
-export const uploadVideos = async (req, res) => {
-    const videos = await Video.find({});
-  return res.render("upload", { 
+
+export const uploadVideos = (req, res) => {
+  return res.render("upload", {
     pageTitle: "Upload Video",
-});
+  });
 };
-export const list = (req, res) => {
-  //   const videos = await Video.find({});
-  return res.render("list", { pageTitle: "Video List" });
+
+export const postUpload = async (req, res) => {
+  const { title, description, hashtags } = req.body;
+  console.log(req.body);
+  Video.create({
+    title,
+    description,
+    createdAt: Date.now,
+    hashtags: hashtags.split(",").map((word) => `#${word}`),
+    meta: {
+      views: 0,
+      rating: 0,
+    },
+  }); // const videos = new Video({}); /n videos.save();
+  return res.redirect("/videos/list");
+};
+
+export const list = async (req, res) => {
+  const videos = await Video.find({});
+  console.log(videos);
+  return res.render("list", {
+    pageTitle: "Video List",
+    videos,
+  });
 };
 // export const watch = (req, res) => {
 //   const { id } = req.params;
@@ -44,18 +63,3 @@ export const list = (req, res) => {
 //   video.save();
 //   return res.redirect("/list");
 // };
-export const postUpload = async (req, res) => {
-  const { title, description, hashtags } = req.body;
-  console.log(req.body);
-  await Video.create({
-    title,
-    description,
-    createdAt,
-    hashtags: hashtags.split(",").map((word) => `#${word}`),
-    meta: {
-      views: 0,
-      rating: 0,
-    },
-  });
-  return res.redirect("/");
-};

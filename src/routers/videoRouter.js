@@ -4,8 +4,8 @@ import { postUpload, uploadVideos, list } from "../controllers/videoController";
 
 const videoRouter = express.Router();
 
-videoRouter.route("/upload").get(uploadVideos).post(postUpload);
-videoRouter.get("/list", list);
+videoRouter.route("/upload").get(uploadVideos).post(postUpload); // videos/upload
+videoRouter.route("/list").get(list).post(list); // videos/list
 
 // globalRouter.get("/join", join);
 // globalRouter.get("/login", login);

@@ -2,15 +2,19 @@ import mongoose from "mongoose"; // 몽구스 import
 
 const videoSchema = new mongoose.Schema({
   // Schema 객체 생성
-  title: String,
-  description: String,
-  createdAt: Date,
-  hashtags: [{ type: String }],
-  meta: {
-    views: Number,
-    rating: Number,
+  title: { type: String, required: true, trim: true, maxLength: 80 },
+  description: { type: String, required: true, trim: true, minLength: 2 },
+  createdAt: {
+    type: Date,
+    required: true,
+    default: () => Date.now(),
   },
-  loggedIn: Boolean,
+  hashtags: [{ type: String, trim: true }],
+  meta: {
+    views: { type: Number, default: 0, required: true },
+    rating: { type: Number, default: 0, required: true },
+  },
+  loggedIn: { type: Boolean, default: false },
 });
 
 const Video = mongoose.model("Video", videoSchema);
