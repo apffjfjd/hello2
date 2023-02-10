@@ -1,8 +1,21 @@
 <body>
-  <h1>this is List</h1>
-  
-    <%for(var i=0; i<videos.length; i++) {%>
-        <%=videos[i]%>
+    <%for(var video of videos) {%>
+      <h3 class="key">Title</h3>
+      <%=video.title%>
+      <h3 class="key">Description</h3>
+      <%=video.description%>
+      <h3 class="key">Created At</h3>
+      <%=video.createdAt%>
+      <h3 class="key">Hashtags</h3>
+      <%=video.hahstags%>
+      <h3 class="key">views</h3>
+      <%=video.meta.views%>
+      <h3 class="key">rating</h3>
+      <%=video.meta.rating%>
+      <br>
+      <button type="submit" onclick="">edit</button>
+      <button type="submit">delete</button>
+        <hr>
         <%}%>
   
 </body>
