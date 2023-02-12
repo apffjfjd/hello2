@@ -13,7 +13,7 @@ export const uploadVideos = (req, res) => {
 export const postUpload = async (req, res) => {
   const { title, description, hashtags } = req.body;
   console.log(req.body);
-  Video.create({
+  await Video.create({
     title,
     description,
     createdAt : Date.new,
