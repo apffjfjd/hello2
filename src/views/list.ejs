@@ -1,5 +1,6 @@
 <body>
     <%for(var video of videos) {%>
+      <img src="/<%= videos.fileUrl %>" controls width="200" height="200" class="m-5" >
       <h3 class="key">Title</h3>
       <%=video.title%>
       <h3 class="key">Description</h3>
@@ -17,8 +18,20 @@
       <button type="submit">delete</button>
         <hr>
         <%}%>
+          
+     
   
 </body>
+<body>
+  <% for (var video of videos) { %>
+    <div>
+      <video src="/<%= video.fileUrl %>" controls width="200" height="200" class="m-5"></video>
+      <h3 class="key">Title</h3>
+      <%= video.title %>
+      <h3 class="key">Description</h3>
+      <%= video.description %>
+      <h3 class="key">Created At</h3>
+      <%= video.createdAt %>
 <script>
 
 </script>
