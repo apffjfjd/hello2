@@ -18,7 +18,7 @@ const videoSchema = new mongoose.Schema({
   loggedIn: { type: Boolean, default: false },
 });
 
-const Video = mongoose.model("Movie", videoSchema);
+const Video = mongoose.model("Video", videoSchema);
 // 첫번째 파라미터 "Video" = collection명, 두번째 파라미터 videoSchema = 스키마
 // 몽구스에서는 첫번째 글자가 대문자인 collection명칭을 사용하지만
 // mongoDB에서 조회할 때는 전체 소문자에 복수형으로 조회해야함

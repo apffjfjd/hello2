@@ -11,9 +11,11 @@ export const uploadVideos = (req, res) => {
 };
 
 export const postUpload = async (req, res) => {
+  const { fileUrl } =req.file;
   const { title, description, hashtags } = req.body;
   console.log(req.body);
-  await Video.create({
+  try {await Video.create({
+    fileUrl,
     title,
     description,
     createdAt : Date.new,
@@ -24,6 +26,12 @@ export const postUpload = async (req, res) => {
     },
   }); // const videos = new Video({}); /n videos.save();
   return res.redirect("/videos/list");
+} catch(error) {
+  return res.render("upload", {
+    pageTitle: "Upload Video",
+    errorMessage: error._message,
+  });
+}
 };
 
 export const list = async (req, res) => {
