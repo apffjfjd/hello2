@@ -2,7 +2,7 @@ import mongoose from "mongoose"; // 몽구스 import
 
 const videoSchema = new mongoose.Schema({
   // Schema 객체 생성
-  fileUrl: {type: String, required: true},
+  path: {type: String, required: true},
   title: { type: String, required: true, trim: true, maxLength: 80 },
   description: { type: String, required: true, trim: true, minLength: 2 },
   createdAt: {
