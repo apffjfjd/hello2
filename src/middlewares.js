@@ -8,7 +8,9 @@ import path from "path";
 //     },
 //   });
   
-  export const videoUpload = multer({
+  export const videoUpload = (err, res, next) => {
+    try{
+      multer({
     storage: multer.diskStorage({
       //폴더위치 지정
       destination: (req, file, done) => {
@@ -24,3 +26,8 @@ import path from "path";
     // fileFilter : fileFilter,
     limits: { fileSize: 30 * 1024 * 1024 },
   });
+  next();
+} catch {
+  res.send(err, "this is error message");
+}
+};

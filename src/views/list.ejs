@@ -1,6 +1,9 @@
 <body>
     <%for(var video of videos) {%>
+      <form method="post">
       <img src="/<%= video.path %>" controls width="200" height="200" class="m-5" >
+      <h3 class="key">_id</h3>
+      <%=video._id%>
       <h3 class="key">Title</h3>
       <%=video.title%>
       <h3 class="key">Description</h3>
@@ -14,8 +17,8 @@
       <h3 class="key">rating</h3>
       <%=video.meta.rating%>
       <br>
-      <button type="submit" onclick="/views/edit">edit</button>
-      <button type="submit">delete</button>
+      <button type="submit">edit</button>
+      </form>
         <hr>
         <%}%>
 </body>
