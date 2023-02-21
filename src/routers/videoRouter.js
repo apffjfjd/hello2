@@ -5,7 +5,8 @@ import { postUpload,
          list, 
          updateVideos,
          updateVideo,
-         postUpdate, 
+         postUpdate,
+         deleteVideos, 
         } from "../controllers/videoController";
 import { videoUpload } from "../middlewares";
 
@@ -13,7 +14,8 @@ const videoRouter = express.Router();
 
 videoRouter.route("/upload").get(uploadVideos).post(postUpload); // videos/upload
 videoRouter.route("/list").get(list).post(updateVideo); // videos/list
-videoRouter.route("/update").get(updateVideos).post(postUpdate); // videos/edit
+videoRouter.route("/:id/update").get(updateVideos).post(postUpdate); // videos/edit
+videoRouter.route("/:id/delete").get(deleteVideos); // videos/edit
 // videoRouter.route("/edit").get(edit).post(postUpdate); // videos/list
 
 // globalRouter.get("/join", join);

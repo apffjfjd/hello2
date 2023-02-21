@@ -1,25 +1,24 @@
 <body>
     <%for(var video of videos) {%>
-      <form method="post">
       <img src="/<%= video.path %>" controls width="200" height="200" class="m-5" >
-      <h3 class="key">_id</h3>
+      <h3>_id</h3>
       <%=video._id%>
-      <h3 class="key">Title</h3>
+      <h3><a href="/videos/<%=video._id%>/update">Title</a></h3>
       <%=video.title%>
-      <h3 class="key">Description</h3>
+      <h3>Description</h3>
       <%=video.description%>
-      <h3 class="key">Created At</h3>
+      <h3>Created At</h3>
       <%=video.createdAt%>
-      <h3 class="key">Hashtags</h3>
+      <h3>Hashtags</h3>
       <%=video.hashtags%>
-      <h3 class="key">views</h3>
+      <h3>views</h3>
       <%=video.meta.views%>
-      <h3 class="key">rating</h3>
+      <h3>rating</h3>
       <%=video.meta.rating%>
       <br>
-      <button type="submit">edit</button>
-      </form>
+      <button type="submit"><a href="/videos/<%=video._id%>/delete">delete</a></button>
         <hr>
         <%}%>
 </body>
+
 

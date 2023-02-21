@@ -15,6 +15,7 @@ const videoSchema = new mongoose.Schema({
     rating: { type: Number, default: 0, required: true },
   },
   loggedIn: { type: Boolean, default: false },
+  delete: { type : Boolean, default: false}
 });
 
 const Video = mongoose.model("Video", videoSchema);

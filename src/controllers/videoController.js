@@ -1,6 +1,6 @@
 import Video from "../models/Video";
 
-export const home = (req, res) => {
+export const home = (req, res) => { // get, home
   return res.render("home", { 
     pageTitle: "Home",
     loggedIn: false });
@@ -22,18 +22,12 @@ export const postUpload = async (req, res) => {
     title,
     description,
     hashtags: hashtags.split(",").map((word) => `#${word}`),
-  }); // const videos = new Video({}); /n videos.save();
+  });
   return res.redirect("/videos/list");
-// } catch(error) {
-//   return res.render("upload", {
-//     pageTitle: "Upload Video",
-//     errorMessage: error._message,
-//   });
-// }
 };
 
 export const list = async (req, res) => {
-  const videos = await Video.find({});
+  const videos = await Video.find({delete : false});
   console.log(videos);
   return res.render("list", {
     pageTitle: "Video List",
@@ -43,39 +37,64 @@ export const list = async (req, res) => {
 
 
 export const updateVideo = async (req, res) => {
-  // const { originalname, path } =req.file;
-  const previousData = await Video.find({});
-  const updateData = req.params.id;
-  console.log(previousData);
-  console.log(updateData);
-  
-  try {
-    await Video.findOneAndUpdate({_id:updateData}, {
-      $set:{
-        createdAt: new Date()
-      }
+  const boardId = req.params.id;
+  console.log(boardId);
+  return res.redirect(`/videos/${boardId}/update`);
+};
+
+export const updateVideos = async (req, res) => {
+  const videos = await Video.find({_id : req.params.id}).exec();
+  console.log("videos[0]");
+  console.log(videos[0]);
+  return res.render("update", {
+    pageTitle: "Update Video",
+    title : videos[0].title,
+    description : videos[0].description,
+    hashtags : videos[0].hashtags
+  });
+};
+
+export const postUpdate = async (req, res) => {
+  const updateBoard = req.body;
+  console.log("updateBoard");
+  console.log(updateBoard);
+    try {
+      const videos = await Video.findOneAndUpdate(
+        {_id : req.params.id}, 
+        {$set :updateBoard},
+        {returnOriginal : false}
+        );
+      console.log("videos");
+      console.log(videos);
+      if(!videos) {
+        return res.status(404).send("Board not found");
+    } return res.redirect("/videos/list");
+    } catch {
+      return res.render("update", {
+      pageTitle: "Update Video",
     });
-  // const videos = new Video({}); /n videos.save();
-  return res.redirect("/videos/update");
-} catch(error) {
-  console.log(error);
-  return res.render("upload", {
-    pageTitle: "Upload Video",
+  };
+};
+
+export const deleteVideos = async (req,res) => {
+  try {
+    const videos = await Video.findOneAndUpdate(
+      {_id : req.params.id}, 
+      {delete : true},
+      {returnOriginal : false}
+      );
+      return res.redirect("/videos/list");
+  } catch {
+    return res.render("list", {
+    pageTitle: "Video List"
   });
 }
-};
+}
 
-export const updateVideos = (req, res) => {
-  return res.render("upload", {
-    pageTitle: "Update Video",
-  });
-};
+export const postDelete = async (req,res) => {
 
-export const postUpdate = (req, res) => {
-  return res.render("upload", {
-    pageTitle: "Update Video",
-  });
-};
+}
+
 
 
 // export const watch = (req, res) => {
