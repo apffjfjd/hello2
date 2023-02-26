@@ -91,8 +91,18 @@ export const deleteVideos = async (req,res) => {
 }
 }
 
-export const postDelete = async (req,res) => {
-
+export const searchVideos = async (req,res) => {
+  const { keyword } = req.query;
+  console.log(req.query);
+  let videos = [];
+  if (keyword) {
+    videos = await Video.find({
+      title: {
+        $regex: new RegExp(`${keyword}$`, "i"),
+      },
+    });
+  }
+  return res.render("list", { pageTitle: "Search", videos });
 }
 
 

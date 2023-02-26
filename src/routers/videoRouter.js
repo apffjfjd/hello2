@@ -7,6 +7,7 @@ import { postUpload,
          updateVideo,
          postUpdate,
          deleteVideos, 
+         searchVideos   
         } from "../controllers/videoController";
 import { videoUpload } from "../middlewares";
 
@@ -16,6 +17,7 @@ videoRouter.route("/upload").get(uploadVideos).post(postUpload); // videos/uploa
 videoRouter.route("/list").get(list).post(updateVideo); // videos/list
 videoRouter.route("/:id/update").get(updateVideos).post(postUpdate); // videos/edit
 videoRouter.route("/:id/delete").get(deleteVideos); // videos/edit
+videoRouter.route("/search").get(searchVideos); // videos/edit
 // videoRouter.route("/edit").get(edit).post(postUpdate); // videos/list
 
 // globalRouter.get("/join", join);
